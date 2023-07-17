@@ -1,5 +1,5 @@
 
-s = read("./AdjMats2/A5AdjMat.txt", String)
+s = read("./AdjMats/A5AdjMat.txt", String)
 
 # Group size minus identity is included in text file
 sz = "" # Extract the size.

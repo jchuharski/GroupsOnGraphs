@@ -1,20 +1,18 @@
-# import Pkg; Pkg.add("Permutations"); Pkg.add("Statistics")
 using Permutations, Statistics
 
+s = read("./AdjMats/A5AdjMat.txt", String)
 
-s = read("./AdjMats2/PSL(3,3)AdjMat.txt", String)
-sz = ""
+# Group size minus identity is included in text file
+sz = "" # Extract the size.
 for i in s
     if i == ' '
         break
     end
     global sz *= i
 end
-n = parse(Int64,sz)
+n = parse(Int64,sz) # n is size for the nxn matrix
 
-
-numbers = Array{Int16}(undef, 0)
-
+numbers = [] # Next extract the digits in order
 check = true
 for i in s
     if i == ' '
@@ -24,15 +22,17 @@ for i in s
         continue
     end
     if occursin(i, "10")
-        append!(numbers, parse(Int16,i))
+        append!(numbers, parse(Int8,i))
     end
 end
 
-adjacency_matrix = reshape(numbers, n, n)
+adj_mat = reshape(numbers, n, n) # reshape the digits into the nxn adjacency matrix
 
 
-# print(typeof(adjacency_matrix))
 function coloring(adj_mat)
+    """
+    Greedy algorithm to find a valid graph coloring.
+    """
 
     for i = 2:n
         numSet = [x for x = 1:i]
@@ -44,11 +44,10 @@ function coloring(adj_mat)
     return maximum(adj_mat)
 end
 
-# print(coloring(adjacency_matrix))
-
-
-
-function PPP(adj_mat)
+function runner(adj_mat)
+    """
+    Runs random permutations of the adjacency matrix to try to guess an optimal coloring.
+    """
     ans = Array{Int16}(undef, 0)
     Threads.@threads for i =1:32
         ad = deepcopy(adj_mat)
@@ -56,7 +55,7 @@ function PPP(adj_mat)
         inv = Matrix{Int16}(Perm^-1)
         entering = Perm*ad*inv
         color = coloring(entering)
-        if color == 117
+        if color == 117 ## CHANGE ME to the lower bound. Thus if theoretical lower bound found, stop running
             append!(ans, color)
             break
         end
@@ -65,5 +64,4 @@ function PPP(adj_mat)
     return minimum(ans), maximum(ans), std(ans), mean(ans)
 end
 
-
-print(PPP(adjacency_matrix))
+print(runner(adjacency_matrix))
