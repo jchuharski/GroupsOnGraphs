@@ -7,3 +7,5 @@ This repository contains some julia code for computationally finding graph prope
 - The coloring folder contains color.jl which uses a greedy algorithm to try to find valid graph colorings, also contains a copy of the AdjMats folder.
 
 Paper in preparation. Feel free to email for any questions!
+
+Credit Jake Chuharski, Vismay Sharan, Zach Slonim
