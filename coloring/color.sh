@@ -16,3 +16,6 @@ module load julia/1.5.2
 
 # Call your script as you would from the command line
 julia color.jl
+
+
+# RUN ON SUPERCLOUD RAH
