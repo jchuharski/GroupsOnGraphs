@@ -1,6 +1,7 @@
 using Permutations, Statistics
 
-s = read("./AdjMats/A5AdjMat.txt", String)
+# Change file path to desired adjacency matrix
+s = read("./AdjMats/A5AdjMat.txt", String) 
 
 # Group size minus identity is included in text file
 sz = "" # Extract the size.
