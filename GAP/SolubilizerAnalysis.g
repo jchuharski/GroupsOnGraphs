@@ -43,7 +43,7 @@ checkGroup := function(G)
 	max := MaximalSubgroups(G);
 	for cl in ConjugacyClasses(G) do
 		x := Representative(cl);
-		Append(solsizes, [Size(solubilizer(G, max, x)))]);
+		Append(solsizes, [Size(solubilizer(G, max, x))]);
 		Append(orders, [Order(x)]);
 	od;
 	Print("Solubilizer Orders: ", solsizes,"\nElement Orders: ",orders, "\n");
