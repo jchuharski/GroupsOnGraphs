@@ -53,8 +53,8 @@ function runner(adj_mat)
         ad = deepcopy(adj_mat)
         Perm = Matrix{Int16}(RandomPermutation(n))
         inv = Matrix{Int16}(Perm^-1)
-        entering = Perm*ad*inv
-        color = coloring(entering)
+        new_perm = Perm*ad*inv
+        color = coloring(new_perm)
         if color == 117 ## CHANGE ME to the lower bound. Thus if theoretical lower bound found, stop running
             append!(ans, color)
             break
